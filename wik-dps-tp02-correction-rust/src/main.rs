@@ -4,6 +4,7 @@ use std::{
     net::{TcpListener, TcpStream},
     thread,
 };
+use gethostname::gethostname;
 
 fn main() {
     let address = match env::var("PING_LISTEN_PORT") {
@@ -53,6 +54,9 @@ fn handle_connection(mut stream: TcpStream) {
             // No panic
             Err(err) => println!("{err}"),
         }
+        println!("!-----------------------------!");
+        println!("hostname : {:#?}", gethostname());
+        println!("HEEEEEEEEEEEEEEEEEEEEEEEEERE");
     } else {
         // Forge HTTP 404 response
         let response = format!("HTTP/1.1 404 NOT FOUND\r\n");
